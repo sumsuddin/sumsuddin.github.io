@@ -1,23 +1,30 @@
 ---
 layout: default
-title: Project List
-permalink: /pages/list/
+title: Blog Posts List
+permalink: /posts/
 ---
 
-
+-----------------------------------
 {% for category in site.categories %}
 
-  ------------------------------------------------------------------------------------------
-  <li>
-    <h1> {{ category | first }} </h1>
-    <ul>
-    {% for posts in category %}
-      {% for post in posts %}
-        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-      {% endfor %}
-    {% endfor %}
-    </ul>
+  <uli>
+    <section class="text-center">
+      <div class="container">
+          <div class="col-lg-8 col-lg-offset-2">
+              <h3> {{ category | first }} </h3>
+              {% for posts in category %}
+                  {% for post in posts %}
+                    {% if post.title != null || post.link != null %}
+                      <ul style="list-style: none;padding-left: 0;">
+                        <a title="Published at {{ post.date }}" href="{{ post.link }}" class="btn btn-default btn-lg"> {{ post.title }}</a>
+                      </ul>
+                    {% endif %}
+                  {% endfor %}
+              {% endfor %}
+          </div>
+      </div>
+    </section>
+  </uli>
+  ----------------------------------
 
-    <br/><br/>
-  </li>
 {% endfor %}
